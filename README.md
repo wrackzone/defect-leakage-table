@@ -5,7 +5,7 @@ defectleakagetable
 Provides a matrix of defect counts by iteration and environment
 
 
-![defect-leakage-report](https://raw.github.com/wrackzone/defect-leakage-report/master/screenshot.png)
+![defect-leakage-report](https://raw.github.com/wrackzone/defect-leakage-table/master/screenshot.png)
 
 
 ## License

@@ -23,6 +23,7 @@ Ext.define('CustomApp', {
                     that.iterations = _.sortBy( that.iterations, function (i) {
                        return new Date( Date.parse( i.get("EndDate"))) ;
                     });
+                    that.iterations = that.iterations.reverse();
                     // get the defect data
                     that._getDefects();
                 }
@@ -87,18 +88,21 @@ Ext.define('CustomApp', {
 
         // create an array of items by first grouping defects by the iteration and then the environment
         var items = [];
-        _.each(elabels, function(l) { items.push({env:l});});
+        //_.each(elabels, function(l) { items.push({env:l});});
+        _.each(ilabels, function(l) { items.push({iteration:l});});
+        
         _.each( _.keys( groupedByIteration ), function(key) {
             var envs = _.groupBy( groupedByIteration[key], function(g) { return g.get("Environment");});
             // for each environment, store the value in the correct item
             _.each( _.keys(envs), function(envkey) { 
-                var item = _.find(items, function(i) { return i.env == envkey;});
-                item[key] = envs[envkey].length;
+                var item = _.find(items, function(i) { return i.iteration == key;});
+                item[envkey] = envs[envkey].length;
             });
         });
 
         // the set of fields in the table
-        var fields = ["env"].concat(ilabels); 
+        //var fields = ["env"].concat(ilabels); 
+        var fields = ["iteration"].concat(elabels); 
 
         // a store from the array of items
         var store = Ext.create('Ext.data.Store', {
@@ -107,7 +111,7 @@ Ext.define('CustomApp', {
         });
 
         // set of table columns
-        var cols = _.map( ["env"].concat(ilabels) , function(f) { 
+        var cols = _.map( ["iteration"].concat(elabels) , function(f) { 
             return { text: f,  dataIndex: f, flex : 1 };
         });
 

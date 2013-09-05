@@ -113,7 +113,7 @@ Ext.define('CustomApp', {
 
         // create the grid
         var grid = Ext.create('Ext.grid.Panel', {
-            title: 'Defect Leakage',
+            title: 'Defect Density',
             store: store,
             columns: cols
         });

@@ -1,4 +1,4 @@
-defectleakagetable
+Defect Density Table
 =========================
 
 ## Overview

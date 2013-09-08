@@ -1,3 +1,5 @@
 .app {
      /* Add app styles here */
 }
+
+.my-custom-grid-green .x-column-header-inner {text-align:center;color:white;background-color:#B5D8EB;}  

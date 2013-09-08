@@ -89,20 +89,20 @@ Ext.define('CustomApp', {
         // create an array of items by first grouping defects by the iteration and then the environment
         var items = [];
         //_.each(elabels, function(l) { items.push({env:l});});
-        _.each(ilabels, function(l) { items.push({iteration:l});});
+        _.each(ilabels, function(l) { items.push({Iteration:l});});
         
         _.each( _.keys( groupedByIteration ), function(key) {
             var envs = _.groupBy( groupedByIteration[key], function(g) { return g.get("Environment");});
             // for each environment, store the value in the correct item
             _.each( _.keys(envs), function(envkey) { 
-                var item = _.find(items, function(i) { return i.iteration == key;});
+                var item = _.find(items, function(i) { return i.Iteration == key;});
                 item[envkey] = envs[envkey].length;
             });
         });
 
         // the set of fields in the table
         //var fields = ["env"].concat(ilabels); 
-        var fields = ["iteration"].concat(elabels); 
+        var fields = ["Iteration"].concat(elabels); 
 
         // a store from the array of items
         var store = Ext.create('Ext.data.Store', {
@@ -111,15 +111,17 @@ Ext.define('CustomApp', {
         });
 
         // set of table columns
-        var cols = _.map( ["iteration"].concat(elabels) , function(f) { 
-            return { text: f,  dataIndex: f, flex : 1 };
+        var cols = _.map( ["Iteration"].concat(elabels) , function(f) { 
+            return { align : "center", text: f,  dataIndex: f, flex : 1 ,baseCls:'my-custom-grid-green' };
         });
 
         // create the grid
         var grid = Ext.create('Ext.grid.Panel', {
-            title: 'Defect Density',
+            // title: 'Defect Density',
             store: store,
-            columns: cols
+            columns: cols,
+            
+            
         });
         
         // add it to the app
